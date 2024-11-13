@@ -1,0 +1,8 @@
+<div class="wrapper">
+    <div class="content">
+        <div *ngIf="isEmailChanged" class="block">
+            <p>Your Email is changed! This page will be closed!</p>
+            <button (click)="redirectToPreviousPage()">Ok</button>
+        </div>
+    </div>
+</div>

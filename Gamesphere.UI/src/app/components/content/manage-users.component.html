@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <div *ngIf="isAuthorized === authorizationResponse.Authorized">
+        <authorized-header></authorized-header>
+    </div>
+    <div class="content">
+        <div class="search-block">
+            <input type="text" name="username" placeholder="Enter a username..." class="search-block-spaces"
+                [(ngModel)]="searchText" (keyup.enter)="getUserWithPagination()">
+            <img src="assets/images/Search-icon.png" alt="No image..." class="search-block-spaces"
+                (click)="getUserWithPagination()">
+        </div>
+        <p *ngIf="users.length === 0" class="user-list-empty">User list is empty...</p>
+        <div class="users-block" *ngFor="let user of users | paginate: { itemsPerPage: pagination.pageSize,
+                currentPage: pagination.page, totalItems: pagination.count}; let i = index;">
+            <div class="user-info">
+                <p class="user-info-data">{{user.userName}} ○ {{user.role}}</p>
+
+                <div class="user-operations">
+                    <div *ngIf="ownUserData.role === 'Creator'">
+                        <button *ngIf="user.role === 'User'" (click)="upgradeRole(user)">
+                            <p>Upgrade to admin</p>
+                        </button>
+                        <button *ngIf="user.role === 'Admin'" (click)="downgradeRole(user)">
+                            <p>Downgrade to user</p>
+                        </button>
+                        <button *ngIf="user.role !== 'Creator'" (click)="banUser(user)">
+                            <p>Ban</p>
+                        </button>
+                    </div>
+                    <div *ngIf="ownUserData.role === 'Admin'">
+                        <button *ngIf="user.role === 'Admin' && user.userName !== ownUserData.username" (click)="reportUser(user)">
+                            <p>Report</p>
+                        </button>
+                        <button *ngIf="user.role === 'User'" (click)="upgradeRoleRequest(user)">
+                            <p>Upgrade role request</p>
+                        </button>
+                        <button *ngIf="user.role === 'User'" (click)="banUser(user)">
+                            <p>Ban</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pagination-block" *ngIf="users.length > 0">
+        <pagination-controls [responsive]="true" previousLabel="Prev" nextLabel="Next"
+            (pageChange)="onPageChange($event)"></pagination-controls>
+    </div>
+    <app-footer></app-footer>
+</div>

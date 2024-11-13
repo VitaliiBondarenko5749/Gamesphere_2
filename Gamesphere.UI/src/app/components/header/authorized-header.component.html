@@ -1,0 +1,16 @@
+<header>
+    <div class="logo">
+        <img src="assets/images/Service-icon.jpg" alt="No image...">
+    </div>
+
+    <nav class="menu-list">
+        <a (click)="navigateTo('')"><p>About us</p></a>
+        <a (click)="navigateTo('/categories')"><p>Catalog of games</p></a>
+        <a (click)="navigateTo('forum')"><p>Forum</p></a>
+    </nav>
+
+    <div class="authorized-content" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" (click)="navigateTo('/user-info/' + userData.id)">
+        <p [style.color]="textColor" class="content-spaces">{{userData.username}}</p>
+        <img [src]="imageUrl" alt="No image..." class="content-spaces">
+    </div>
+</header>

@@ -1,0 +1,69 @@
+<div class="wrapper">
+    <div *ngIf="isVisibleHeader===true && isAuthorized === authorizationResponse.Authorized">
+        <authorized-header></authorized-header>
+    </div>
+    <div
+        *ngIf="isVisibleHeader===true && (isAuthorized === authorizationResponse.TokenExpired || isAuthorized == authorizationResponse.TokenNotFound)">
+        <unauthorized-header></unauthorized-header>
+    </div>
+    <div class="content">
+        <div class="page-content-description">
+            <div class="page-content">
+                <p>{{category}}</p>
+                <img src="assets/images/Add-circle.png" alt="No image..." *ngIf="isAuthorized == authorizationResponse.Authorized && (ownUserData.role === 'Admin' 
+                    || ownUserData.role === 'Creator')" (click)="navigateTo('/edit-game')">
+            </div>
+        </div>
+        <div class="page-content-line"></div>
+        <div class="search-block">
+            <div class="search-block-input">
+                <input type="text" name="username" placeholder="Enter a username..." class="search-block-spaces"
+                    [(ngModel)]="searchText" (keyup.enter)="getGamesWithPagination()">
+                <img src="assets/images/Search-icon.png" alt="No image..." class="search-block-spaces"
+                    (click)="getGamesWithPagination()">
+            </div>
+
+            <div class="search-block-selector" *ngIf="games.length > 1">
+                <select id="sort-select" [(ngModel)]="selectedSort" (change)="getGames()">
+                    <option [ngValue]="sorter.DateByAscending">Date (Ascending)</option>
+                    <option [ngValue]="sorter.DateByDescending">Date (Descending)</option>
+                    <option [ngValue]="sorter.PopularityByAscending">Popularity (Ascending)</option>
+                    <option [ngValue]="sorter.PopularityByDescending">Popularity (Descending)</option>
+                </select>
+            </div>
+        </div>
+        <div class="game-content">
+            <p *ngIf="games.length === 0" class="game-list-empty">Game list is empty...</p>
+            <div class="game" *ngFor="let game of games | paginate: { itemsPerPage: pagination.pageSize,
+                currentPage: pagination.page, totalItems: pagination.count};">
+                <img [src]="game.mainImageDirectory" alt="No image...">
+                <a (click)="navigateTo('/categories/' + category.replace(' ', '_') + '/' + game.id)">
+                    <p>{{game.name}}</p>
+                </a>
+            </div>
+        </div>
+        <div class="pagination-block" *ngIf="games.length > 0 && category === 'Favorite games'">
+            <pagination-controls [responsive]="true" previousLabel="Prev" nextLabel="Next"
+                (pageChange)="onPageChange($event)"></pagination-controls>
+        </div>
+        <div class="page-content-description" *ngIf="recommendGames.length > 0">
+            <div class="page-content">
+                <p>Recommended for you:</p>
+            </div>
+        </div>
+        <div class="page-content-line" *ngIf="recommendGames.length > 0"></div>
+        <div class="game-content" *ngIf="recommendGames.length > 0">
+            <div class="game" *ngFor="let game of recommendGames;">
+                <img [src]="game.mainImageDirectory" alt="No image...">
+                <a (click)="navigateTo('/categories/' + category + '/' + game.id)">
+                    <p>{{game.name}}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="pagination-block" *ngIf="games.length > 0 && category !== 'Favorite games'">
+        <pagination-controls [responsive]="true" previousLabel="Prev" nextLabel="Next"
+            (pageChange)="onPageChange($event)"></pagination-controls>
+    </div>
+    <app-footer></app-footer>
+</div>

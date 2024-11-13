@@ -1,0 +1,8 @@
+<div class="wrapper">
+    <div class="content">
+        <div *ngIf="isEmailConfirmed" class="block">
+            <p>Your Email is confirmed! This page will be closed!</p>
+            <button (click)="redirectToMainPage()">Ok</button>
+        </div>
+    </div>
+</div>

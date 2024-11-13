@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <div *ngIf="isAuthorized === authorizationResponse.Authorized">
+        <authorized-header></authorized-header>
+    </div>
+    <div class="content">
+        <div class="user-content">
+            <div class="close-icon-block">
+                <img src="assets/images/Close-window-icon.png" alt="No image..." (click)="goBack()">
+            </div>
+            <div class="icon-content-flex">
+                <div class="icon-content" [ngStyle]="{'background-image': (imageUrl) ? 'url(' + imageUrl + ')' : ''}">
+                    <input type="file" name="icon" id="fileInput" (change)="onFileSelected($event)">
+                    <label for="fileInput">
+                        <img src="assets/images/Choose-image-icon.png" alt="Choose Photo">
+                    </label>
+                </div>
+            </div>
+            <div class="white-line-block">
+                <div class="white-line"></div>
+            </div>
+            <div class="user-data">
+                <div class="user-data-block">
+                    <p class="user-data-spaces">Name: {{userData.username}}</p>
+                    <img (click)="changeUsername()" class="user-data-spaces" src="assets/images/Change-data-button.png" alt="No image...">
+                </div>
+                <div class="user-data-block">
+                    <p class="user-data-spaces">Email: {{userData.email}}</p>
+                    <img (click)="changeEmail()" class="user-data-spaces" src="assets/images/Change-data-button.png" alt="No image...">
+                </div>
+                <div class="user-data-block">
+                    <p class="user-data-spaces">Role: {{userData.role}}</p>
+                </div>
+            </div>
+            <div class="white-line-block">
+                <div class="white-line"></div>
+            </div>
+            <div class="buttons">
+                <div *ngIf="userData.role === 'Admin' || userData.role === 'Creator'">
+                    <button class="button-spaces" (click)="redirectToManageUsersPage()">
+                        <p>Manage users</p>
+                    </button>
+                </div>
+                <button class="button-spaces" (click)="logout()">
+                    <p>Log out</p>
+                </button>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

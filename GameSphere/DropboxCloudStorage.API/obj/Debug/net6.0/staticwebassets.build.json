@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "2k6gKvSHKiHOEsLsPc+REVAyW9/oqqVTeTnYJuQqLTE=",
+  "Source": "DropboxCloudStorage.API",
+  "BasePath": "_content/DropboxCloudStorage.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

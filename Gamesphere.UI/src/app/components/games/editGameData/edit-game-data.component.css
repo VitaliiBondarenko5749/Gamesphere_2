@@ -1,0 +1,231 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'Mitr';
+  src: url("https://fonts.googleapis.com/css?family=Mitr&display=swap");
+}
+
+@font-face {
+  font-family: 'Lemon';
+  src: url("https://fonts.googleapis.com/css?family=Lemon&display=swap");
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  margin: 0px 100px;
+}
+
+app-footer {
+  flex-shrink: 0;
+}
+
+.page-content{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin: 20px 0px;
+}
+
+.page-content p{
+    margin: 0;
+    margin-left: 30px;
+    font-family: 'Mitr';
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.page-content-line{
+    height: 5px;
+    background-color: rgba(32, 27, 27, 1);
+    width: 100%;
+}
+
+select{
+    border: 0px;
+    font-family: 'Mitr';
+    font-weight: 600;
+    font-size: 20px;
+}
+
+option{
+    font-family: 'Mitr';
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.form-content{
+    margin-top: 20px;
+    border-radius: 25px;
+}
+
+.form-content p{
+    margin: 0;
+    font-family: 'Mitr';
+    font-weight: 600;
+    font-size: 15px;
+    color: white;
+}
+
+.form-block{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-spaces{
+    margin: 0px 7px;
+}
+
+#CategoryForm{
+    display: flex;
+    flex-direction: column;
+}
+
+#CategoryForm img{
+    background-color: rgba(32, 27, 27, 1);
+}
+
+#DeveloperForm{
+    display: flex;
+    flex-direction: column;
+}
+
+#DeveloperForm img{
+    background-color: rgba(32, 27, 27, 1);
+}
+
+#LanguageForm{
+    display: flex;
+    flex-direction: column;
+}
+
+#LanguageForm img{
+    background-color: rgba(32, 27, 27, 1);
+}
+
+#PlatformForm{
+    display: flex;
+    flex-direction: column;
+}
+
+#PlatformForm img{
+    background-color: rgba(32, 27, 27, 1);
+}
+
+#PublisherForm{
+    display: flex;
+    flex-direction: column;
+}
+
+#PublisherForm img{
+    background-color: rgba(32, 27, 27, 1);
+}
+
+#GameForm{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+add-game-component{
+    width: 100%;
+}
+
+#EditForm{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+edit-game-component{
+    width: 100%;
+}
+
+input{
+    width: 300px;
+    border-radius: 20px;
+    font-family: 'Mitr';
+    font-weight: 600;
+    font-size: 15px;
+    height: 30px;
+    border: 2px solid;
+    text-indent: 15px;
+}
+
+input[type="submit"] {
+    width: 100px;
+    height: 32px;
+    font-family: 'Mitr';
+    font-weight: 600;
+    font-size: 15px;
+    background-color: red;
+    border: 0px;
+    transition: transform 0.3s;
+    text-indent: 0px;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    transform: scale(1.2);
+}
+
+.reset-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 2s ease;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.reset-icon:hover {
+    transform: rotate(360deg);
+}
+
+.form-item{
+    display:  flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form-item p{
+    margin-left: 5px;
+}
+
+.form-item img{
+    width: 35px;
+    height: 30px;
+    margin-right: 5px;
+    border-radius: 25px;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.form-item img:hover{
+    transform: scale(1.1);
+}
+
+.form-list-line{
+    height: 2px;
+    background-color: white;
+    width: 100%;
+    margin: 3px 0px;
+}

@@ -1,0 +1,92 @@
+<div class="wrapper">
+    <div *ngIf="isVisibleHeader===true && isAuthorized === authorizationResponse.Authorized">
+        <authorized-header></authorized-header>
+    </div>
+    <div
+        *ngIf="isVisibleHeader===true && (isAuthorized === authorizationResponse.TokenExpired || isAuthorized == authorizationResponse.TokenNotFound)">
+        <unauthorized-header></unauthorized-header>
+    </div>
+    <div class="content">
+        <div class="page-content-description">
+            <div class="page-content">
+                <p>Forum</p>
+            </div>
+        </div>
+
+        <div class="page-content-line"></div>
+
+        <div class="filter-block" [ngStyle]="{'justify-content': 
+        (isAuthorized !== authorizationResponse.Authorized) ? 'right' : 'space-between'}">
+            <div class="filter-block-left" *ngIf="isAuthorized === authorizationResponse.Authorized">
+                <button class="b1" (click)="navigateTo('/forum/add-post')">
+                    <p>Add new topic +</p>
+                </button>
+                <button class="b2" *ngIf="!chosenSpecisalTopics" (click)="getTopics(topicViewer.Own)">
+                    <p>Watch own topics</p>
+                </button>
+                <button class="b3" *ngIf="!chosenSpecisalTopics" (click)="getTopics(topicViewer.Saved)">
+                    <p>Watch saved topics</p>
+                </button>
+                <button class="b4" *ngIf="chosenSpecisalTopics" (click)="getTopics(topicViewer.All)">
+                    <p>Watch all topics</p>
+                </button>
+            </div>
+            <div class="filter-block-right">
+                <input [(ngModel)]="topicText" type="text" name="search-topic-textbox"
+                    placeholder="Enter keywords of the topic...">
+                <div class="search-game-block">
+                    <input [(ngModel)]="gameText" type="text" name="search-game-textbox"
+                        placeholder="Search topics by game..." (input)="getTop10GamesByName()">
+                    <div class="game-list" *ngFor="let game of games">
+                        <div *ngIf="existsInGameStack(game) === false">
+                            <p (click)="chosenGames.push(game)">{{game.name}}</p>
+                            <div class="game-line"></div>
+                        </div>
+                    </div>
+                    <div class="game-list-stack">
+                        <div class="item-stack" *ngFor="let game of chosenGames;">
+                            <p>{{game.name}}</p>
+                            <img src="assets/images/Delete-icon.png" alt="No image..."
+                                (click)="chosenGames.splice(chosenGames.indexOf(game), 1)">
+                        </div>
+                    </div>
+                </div>
+                <div class="selector-and-searcher-block">
+                    <img src="assets/images/Search-icon.png" alt="No image..." (click)="getTopics(selectedTopicView)">
+                    <select id="sort-select" [(ngModel)]="selectedTopicSort">
+                        <option [ngValue]="topicSorter.DateByAscending">Date (Ascending)</option>
+                        <option [ngValue]="topicSorter.DateByDescending">Date (Descending)</option>
+                        <option [ngValue]="topicSorter.ViewsByAscending">Views (Ascending)</option>
+                        <option [ngValue]="topicSorter.ViewsByDescending">Views (Descending)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <p *ngIf="posts.length === 0" class="topic-list-empty">Topic list is empty...</p>
+
+        <div class="topic-list">
+            <div class="topic-item" *ngFor="let post of posts | paginate: { itemsPerPage: pagination.pageSize, 
+                currentPage: pagination.page, totalItems: pagination.count};">
+                <div class="item-content">
+                    <img [src]="post.userInfo.iconDirectory" />
+                    <div class="item-text-content">
+                        <div class="text-content-1">
+                            <p class="topic-text" (click)="navigateTo('forum/'+ post.id)">{{post.topic}}</p>
+                            <p class="user-text">{{post.userInfo.userName}} ○ {{post.createdAt}}</p>
+                        </div>
+                        <div class="text-content-2">
+                            <p>Views: {{post.views}}</p>
+                            <p>Replies: {{post.numberOfReplies}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pagination-block" *ngIf="posts.length > 0">
+        <pagination-controls [responsive]="true" previousLabel="Prev" nextLabel="Next"
+            (pageChange)="onPageChange($event)"></pagination-controls>
+    </div>
+    <app-footer></app-footer>
+</div>

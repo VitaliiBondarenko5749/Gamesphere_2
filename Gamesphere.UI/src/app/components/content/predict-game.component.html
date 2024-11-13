@@ -1,0 +1,21 @@
+<div class="wrapper">
+    <div *ngIf="isVisibleHeader===true && isAuthorized === authorizationResponse.Authorized">
+        <authorized-header></authorized-header>
+      </div>
+      <div
+        *ngIf="isVisibleHeader===true && (isAuthorized === authorizationResponse.TokenExpired || isAuthorized == authorizationResponse.TokenNotFound)">
+        <unauthorized-header></unauthorized-header>
+      </div>
+    <div class="content">
+        <div class="content-block">
+            <img *ngIf="selectedFile" src="{{selectedFile}}" alt="No image...">
+            <div class="upload-button">
+                <input type="file" name="predict-image" id="fileInput" (change)="onFileSelected($event)">
+                <label for="fileInput" class="custom-file-upload"><p>Upload image</p></label>
+                <button id="predict" *ngIf="selectedFile" (click)="predictGame()"><p>Predict</p></button>
+            </div>
+            <p class="prediction-result">{{predictionResult}}</p>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

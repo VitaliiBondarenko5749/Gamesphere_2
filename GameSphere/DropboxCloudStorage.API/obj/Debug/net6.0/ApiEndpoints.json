@@ -1,0 +1,44 @@
+[
+  {
+    "ContainingType": "DropboxCloudStorage.API.Controllers.MainController",
+    "Method": "DeleteFileAsync",
+    "RelativePath": "api/Main/DeleteFile/{filePath}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "filePath",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DropboxCloudStorage.API.Controllers.MainController",
+    "Method": "UploadFileAsync",
+    "RelativePath": "api/Main/UploadFile",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "DropboxCloudStorage.API.ViewModels.UploadFileViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Helpers.ServerResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

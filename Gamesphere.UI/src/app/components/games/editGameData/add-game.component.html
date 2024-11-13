@@ -1,0 +1,280 @@
+<div class="content">
+    <div class="block1">
+        <div class="left-block">
+            <div class="validate-image-block">
+                <div class="image-in-form"
+                    [ngStyle]="{ 'background-image': selectedImage ? 'url(' + selectedImage + ')' : 'url(assets/images/Gamepad-icon2.png)'}">
+                    <input type="file" name="icon" id="fileInput" (change)="onFileSelected($event)"> <!--Not visible-->
+                    <label for="fileInput">
+                        <img src="assets/images/Choose-image-icon.png" alt="Choose Photo">
+                    </label>
+                </div>
+                <p *ngIf="game.icon === null">Choose icon</p>
+            </div>
+            <div class="name-block">
+                <input type="text" name="name" placeholder="Enter name..." autocomplete="name" [(ngModel)]="game.name" [ngStyle]="{'border-color': (game.name.length === 0 || isGameNameAvailable === false) 
+                ? 'red' : 'rgba(32, 27, 27, 1)'}" (input)="CheckGameNameExistence()">
+                <p *ngIf="game.name.length === 0">Name is empty!</p>
+                <p *ngIf="isGameNameAvailable === false">Name is already taken!</p>
+            </div>
+            <div class="date-block">
+                <input type="date" name="date" autocomplete="bday" [(ngModel)]="game.releaseDate"
+                [ngStyle]="{'border-color': (game.releaseDate === null) ? 'red' : 'rgba(32, 27, 27, 1)'}">
+                <p *ngIf="game.releaseDate === null">Date is required!</p>
+            </div>
+        </div>
+        <div class="right-block">
+            <textarea name="description" [(ngModel)]="game.description" maxlength="10000"
+                placeholder="Enter game description..."
+                [ngStyle]="{'border-color': (game.description.length < 70) ? 'red' : 'rgba(32, 27, 27, 1)'}">
+            </textarea>
+            <p *ngIf="game.description.length < 70">Description must be more than 70 symbols!</p>
+        </div>
+    </div>
+
+    <div class="block2">
+        <div class="image-block">
+            <div class="insert-image-block">
+                <div class="image-block-description">
+                    <p>Images</p>
+                    <div>
+                        <input type="file" name="image" id="imageInput" (change)="onImageSelected($event)">
+                        <label for="imageInput">
+                            <img src="assets/images/Add-photo-icon.png" alt="No image...">
+                        </label>
+                    </div>
+                </div>
+                <div class="page-content-line"></div>
+            </div>
+
+            <div class="image-flex">
+                <p *ngIf="game.images.length === 0">You have to choose minimum 1 image!</p>
+                <div class="image-display" *ngFor="let image of game.images;">
+                    <div class="image-display-block">
+                        <img class="image-display-1" [src]="image.imageUrl" alt="No image...">
+                        <div>
+                            <img class="delete-image" src="assets/images/Delete-icon.png" alt="No image..."
+                                (click)="deleteFromImages(image)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-block">
+            <div class="insert-video-block">
+                <div class="video-block-description">
+                    <p>Videos</p>
+                </div>
+                <div class="page-content-line"></div>
+            </div>
+            <div class="form-video-block">
+                <div class="form-video input-spaces">
+                    <label for="videoLink">Insert youtube video link:</label>
+                    <input type="text" id="videoLink" name="videoLink" [(ngModel)]="videoLinkText"
+                        [ngStyle]="{'border-color': (videoLinkText.length > 0 && isYouTubeLink(videoLinkText) === false) ? 'red' : 'rgba(32, 27, 27, 1)'}">
+                </div>
+                <input type="submit" value="Add" class="input-spaces" (click)="addVideo()"
+                    [ngStyle]="{'display': (videoLinkText.length > 0 && isYouTubeLink(videoLinkText) === false) ? 'none' : 'block'}">
+            </div>
+            <div class="videos" *ngFor="let videoLink of game.videoLinks">
+                <div class="video-spaces">
+                    <iframe width="560" height="315" [src]="getYoutubeFrameLink(videoLink)" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div>
+                        <img class="delete-image" src="assets/images/Delete-icon.png" alt="No image"
+                            (click)="deleteFromVideos(videoLink)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Publishers-->
+
+        <div class="static-block">
+            <div class="description-static-block">
+                <div>
+                    <p>Publisher</p>
+                </div>
+                <div class="page-content-line"></div>
+            </div>
+            <div class="static-block-form">
+                <div *ngIf="game.publisher === null">
+                    <div class="static-form-content">
+                        <label for="static-input">Choose publisher:</label>
+                        <input type="text" id="static-input" name="static-input" [(ngModel)]="publisherSearchText"
+                            (input)="getTop10Publishers()">
+                        <p>Publisher is required!</p>
+                    </div>
+                    <div class="static-form-list" *ngFor="let publisher of top10Publishers;">
+                        <div>
+                            <div class="form-list-line"></div>
+                            <div class="static-form-item">
+                                <p>{{publisher.name}}</p>
+                                <img class="static-image" src="assets/images/Add-circle.png" alt="No image..."
+                                    (click)="game.publisher = publisher">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-stack" *ngIf="game.publisher !== null" style="margin-top: 60px;">
+                    <p>{{game.publisher.name}}</p>
+                    <img src="assets/images/Delete-icon.png" alt="No image..." (click)="game.publisher = null">
+                </div>
+            </div>
+        </div>
+
+        <!--Categories-->
+
+        <div class="static-block">
+            <div class="description-static-block">
+                <div>
+                    <p>Categories</p>
+                </div>
+                <div class="page-content-line"></div>
+            </div>
+            <div class="static-block-form">
+                <div class="static-form-content">
+                    <label for="static-input">Choose categories:</label>
+                    <input type="text" id="static-input" name="static-input" [(ngModel)]="categorySearchText"
+                        (input)="getTop10Categories()">
+                </div>
+                <div class="static-form-list" *ngFor="let category of top10Categories;">
+                    <div *ngIf="existsInCategoryStack(category) === false">
+                        <div class="form-list-line"></div>
+                        <div class="static-form-item">
+                            <p>{{category.name}}</p>
+                            <img class="static-image" src="assets/images/Add-circle.png" alt="No image..."
+                                (click)="game.categories.push(category)">
+                        </div>
+                    </div>
+                </div>
+                <div class="static-form-stack">
+                    <div class="item-stack" *ngFor="let category of game.categories;">
+                        <p>{{category.name}}</p>
+                        <img src="assets/images/Delete-icon.png" alt="No image..."
+                            (click)="game.categories.splice(game.categories.indexOf(category), 1)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Developers-->
+
+        <div class="static-block">
+            <div class="description-static-block">
+                <div>
+                    <p>Developers</p>
+                </div>
+                <div class="page-content-line"></div>
+            </div>
+            <div class="static-block-form">
+                <div class="static-form-content">
+                    <label for="static-input">Choose developers:</label>
+                    <input type="text" id="static-input" name="static-input" [(ngModel)]="developerSearchText"
+                        (input)="getTop10Developers()">
+                </div>
+                <div class="static-form-list" *ngFor="let developer of top10Developers;">
+                    <div *ngIf="existsInDeveloperStack(developer) === false">
+                        <div class="form-list-line"></div>
+                        <div class="static-form-item">
+                            <p>{{developer.name}}</p>
+                            <img class="static-image" src="assets/images/Add-circle.png" alt="No image..."
+                                (click)="game.developers.push(developer)">
+                        </div>
+                    </div>
+                </div>
+                <div class="static-form-stack">
+                    <div class="item-stack" *ngFor="let developer of game.developers;">
+                        <p>{{developer.name}}</p>
+                        <img src="assets/images/Delete-icon.png" alt="No image..."
+                            (click)="game.developers.splice(game.developers.indexOf(developer), 1)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Languages-->
+
+        <div class="static-block">
+            <div class="description-static-block">
+                <div>
+                    <p>Languages</p>
+                </div>
+                <div class="page-content-line"></div>
+            </div>
+            <div class="static-block-form">
+                <div class="static-form-content">
+                    <label for="static-input">Choose languages:</label>
+                    <input type="text" id="static-input" name="static-input" [(ngModel)]="languageSearchText"
+                        (input)="getTop10Languages()">
+                </div>
+                <div class="static-form-list" *ngFor="let language of top10Languages;">
+                    <div *ngIf="existsInLanguageStack(language) === false">
+                        <div class="form-list-line"></div>
+                        <div class="static-form-item">
+                            <p>{{language.name}}</p>
+                            <img class="static-image" src="assets/images/Add-circle.png" alt="No image..."
+                                (click)="game.languages.push(language)">
+                        </div>
+                    </div>
+                </div>
+                <div class="static-form-stack">
+                    <div class="item-stack" *ngFor="let language of game.languages;">
+                        <p>{{language.name}}</p>
+                        <img src="assets/images/Delete-icon.png" alt="No image..."
+                            (click)="game.languages.splice(game.languages.indexOf(language), 1)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Platforms-->
+
+        <div class="static-block">
+            <div class="description-static-block">
+                <div>
+                    <p>Platforms</p>
+                </div>
+                <div class="page-content-line"></div>
+            </div>
+            <div class="static-block-form">
+                <div class="static-form-content">
+                    <label for="static-input">Choose platforms:</label>
+                    <input type="text" id="static-input" name="static-input" [(ngModel)]="platformSearchText"
+                        (input)="getTop10Platforms()">
+                </div>
+                <div class="static-form-list" *ngFor="let platform of top10Platforms;">
+                    <div *ngIf="existsInPlatformStack(platform) === false">
+                        <div class="form-list-line"></div>
+                        <div class="static-form-item">
+                            <p>{{platform.name}}</p>
+                            <img class="static-image" src="assets/images/Add-circle.png" alt="No image..."
+                                (click)="game.platforms.push(platform)">
+                        </div>
+                    </div>
+                </div>
+                <div class="static-form-stack">
+                    <div class="item-stack" *ngFor="let platform of game.platforms;">
+                        <p>{{platform.name}}</p>
+                        <img src="assets/images/Delete-icon.png" alt="No image..."
+                            (click)="game.platforms.splice(game.platforms.indexOf(platform), 1)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-block">
+        <div>
+            <button (click)="resetForm()">
+                <p>Cancel</p>
+            </button>
+            <button id="add" (click)="addGame()" style="background-color: red;">
+                <p>Add</p>
+            </button>
+        </div>
+    </div>
+</div>

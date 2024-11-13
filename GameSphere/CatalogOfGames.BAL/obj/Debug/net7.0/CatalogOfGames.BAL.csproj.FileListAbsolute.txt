@@ -1,0 +1,15 @@
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\bin\Debug\net7.0\CatalogOfGames.BAL.deps.json
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\bin\Debug\net7.0\CatalogOfGames.BAL.dll
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\bin\Debug\net7.0\CatalogOfGames.BAL.pdb
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\bin\Debug\net7.0\CatalogOfGames.DAL.dll
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\bin\Debug\net7.0\CatalogOfGames.DAL.pdb
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\obj\Debug\net7.0\CatalogOfGames.BAL.csproj.AssemblyReference.cache
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\obj\Debug\net7.0\CatalogOfGames.BAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\obj\Debug\net7.0\CatalogOfGames.BAL.AssemblyInfoInputs.cache
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\obj\Debug\net7.0\CatalogOfGames.BAL.AssemblyInfo.cs
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\obj\Debug\net7.0\CatalogOfGames.BAL.csproj.CoreCompileInputs.cache
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\obj\Debug\net7.0\CatalogOfGames.BAL.csproj.CopyComplete
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\obj\Debug\net7.0\CatalogOfGames.BAL.dll
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\obj\Debug\net7.0\refint\CatalogOfGames.BAL.dll
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\obj\Debug\net7.0\CatalogOfGames.BAL.pdb
+D:\GameSphere\Project\GameSphere\CatalogOfGames.BAL\obj\Debug\net7.0\ref\CatalogOfGames.BAL.dll

@@ -1,0 +1,15 @@
+D:\GameSphere\APIs\GameSphere\Forum.DAL\bin\Debug\net6.0\Forum.DAL.deps.json
+D:\GameSphere\APIs\GameSphere\Forum.DAL\bin\Debug\net6.0\Forum.DAL.dll
+D:\GameSphere\APIs\GameSphere\Forum.DAL\bin\Debug\net6.0\Forum.DAL.pdb
+D:\GameSphere\APIs\GameSphere\Forum.DAL\obj\Debug\net6.0\Forum.DAL.csproj.AssemblyReference.cache
+D:\GameSphere\APIs\GameSphere\Forum.DAL\obj\Debug\net6.0\Forum.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\GameSphere\APIs\GameSphere\Forum.DAL\obj\Debug\net6.0\Forum.DAL.AssemblyInfoInputs.cache
+D:\GameSphere\APIs\GameSphere\Forum.DAL\obj\Debug\net6.0\Forum.DAL.AssemblyInfo.cs
+D:\GameSphere\APIs\GameSphere\Forum.DAL\obj\Debug\net6.0\Forum.DAL.csproj.CoreCompileInputs.cache
+D:\GameSphere\APIs\GameSphere\Forum.DAL\obj\Debug\net6.0\Forum.DAL.dll
+D:\GameSphere\APIs\GameSphere\Forum.DAL\obj\Debug\net6.0\refint\Forum.DAL.dll
+D:\GameSphere\APIs\GameSphere\Forum.DAL\obj\Debug\net6.0\Forum.DAL.pdb
+D:\GameSphere\APIs\GameSphere\Forum.DAL\obj\Debug\net6.0\ref\Forum.DAL.dll
+D:\GameSphere\APIs\GameSphere\Forum.DAL\bin\Debug\net6.0\Helpers.dll
+D:\GameSphere\APIs\GameSphere\Forum.DAL\bin\Debug\net6.0\Helpers.pdb
+D:\GameSphere\APIs\GameSphere\Forum.DAL\obj\Debug\net6.0\Forum.DAL.csproj.Up2Date

@@ -1,0 +1,1271 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:1000"
+  },
+  "Routes": [
+    // AI PHYTON
+
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/predict-game",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "127.0.0.1",
+          "Port": 5101
+        }
+      ],
+      "DownstreamPathTemplate": "/predict"
+    },
+
+    // JWT Authentication.
+
+    // Check username existence in database.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/check-username-existence/{username}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7641
+        }
+      ],
+      "DownstreamPathTemplate": "/api/User/CheckUsernameExistence/{username}"
+    },
+
+    // Register a new user.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/register",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Authentication/Register"
+    },
+
+    // Confirm Email.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/confirm-email?userId={userId}&code={code}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7641
+        }
+      ],
+      "DownstreamPathTemplate": "/api/User/ConfirmEmail?UserId={userId}&Code={code}",
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+
+    // Check email existence in database.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/check-email-existence/{email}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7641
+        }
+      ],
+      "DownstreamPathTemplate": "/api/User/CheckEmailExistence/{email}"
+    },
+
+    // Login a user.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7641
+        }
+      ],
+      "DownstreamPathTemplate": "/api/User/Login"
+    },
+
+    // Forgot password.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/forgot-password",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Authentication/ForgotPassword"
+    },
+
+    // Reset password.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/reset-password",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7641
+        }
+      ],
+      "DownstreamPathTemplate": "/api/User/ResetPassword"
+    },
+
+    // Refresh token.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/refresh-token",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7641
+        }
+      ],
+      "DownstreamPathTemplate": "/api/User/RefreshToken"
+    },
+
+    // Change avatar.
+    {
+      "UpstreamHttpMethod": [ "Put" ],
+      "UpstreamPathTemplate": "/change-avatar",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Authentication/ChangeIcon",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Change username
+    {
+      "UpstreamHttpMethod": [ "Put" ],
+      "UpstreamPathTemplate": "/change-username",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7641
+        }
+      ],
+      "DownstreamPathTemplate": "/api/User/ChangeUsername",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Change email (generate token)
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/change-email",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Authentication/ChangeEmail",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Change email
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/change-email?userId={userId}&email={email}&code={code}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7641
+        }
+      ],
+      "DownstreamPathTemplate": "/api/User/ChangeEmail?UserId={userId}&NewEmail={email}&Code={code}"
+    },
+
+    // Revoke refresh token.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/revoke/{userId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7641
+        }
+      ],
+      "DownstreamPathTemplate": "/api/User/Revoke/{userId}"
+    },
+
+    // Get users.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/get-users?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7641
+        }
+      ],
+      "DownstreamPathTemplate": "/api/PrivilegedUser/GetUsers?{everything}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Ban user.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/ban-user",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Authentication/Ban",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Upgrade role.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/upgrade-role/{userId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Authentication/UpgradeRole/{userId}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Downgrade role.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/downgrade-role",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Authentication/DowngradeRole",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Send email.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/send-email",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7200
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Email"
+    },
+
+    // Catalog of games API
+
+    // Get categories
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/get-categories",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Categories"
+    },
+
+    // Add category.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-category",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Category",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Delete category.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-category/{categoryId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Category/{categoryId}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Get top 10 categories.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/categories/{name}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Categories/{name}"
+    },
+
+    // Add developer.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-developer",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Developer",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Delete developer.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-developer/{developerId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Developer/{developerId}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Get top 10 developers.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/developers/{name}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Developers/{name}"
+    },
+
+    // Add language.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-language",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Language",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Delete language.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-language/{languageId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Language/{languageId}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Get top 10 languages.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/languages/{name}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Languages/{name}"
+    },
+
+    // Add platform.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-platform",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Platform",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Delete platform.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-platform/{platformId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Platform/{platformId}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Get top 10 platforms.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/platforms/{name}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Platforms/{name}"
+    },
+
+    // Add publisher.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-publisher",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Publisher",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Delete publisher.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-publisher/{publisherId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Publisher/{publisherId}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Get top 10 publisher.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/publishers/{name}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Publishers/{name}"
+    },
+
+    // Check game name existence.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/check-game-existence/{name}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game/CheckNameExistence/{name}"
+    },
+
+    // Add game
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-game",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Upload game image.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/upload-game-image",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Dropbox/UploadGameImage",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Delete game image
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-game-image?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Dropbox/DeleteGameImage?{everything}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Add game video link
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-game-video-link",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game/AddGameVideoLink",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Delete game video link. Воздух.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-game-video-link/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game/DeleteGameVideoLink/{id}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Update publisher to game.
+    {
+      "UpstreamHttpMethod": [ "Put" ],
+      "UpstreamPathTemplate": "/update-publisher-data",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Publisher/UpdateDataInGame",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Add category to game.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-category-to-game",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Category/AddToGame",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Remove category from game. Воздух.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-category-from-game?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Category/DeleteFromGame?{everything}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Add developer to game.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-developer-to-game",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Developer/AddToGame",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Remove developer from game. Воздух.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-developer-from-game?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Developer/DeleteFromGame?{everything}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Add language to game.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-language-to-game",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Language/AddToGame",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Remove language from game. Воздух.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-language-from-game?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Language/DeleteFromGame?{everything}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Add platform to game.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-platform-to-game",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Platform/AddToGame",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Remove platform from game. Воздух.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-platform-from-game?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Platform/DeleteFromGame?{everything}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Get top 10 games.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/games/{name}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Games/{name}"
+    },
+
+    // Delete game
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-game/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game/{id}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Get all games.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/get-all-games?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game/GetAllGames?{everything}"
+    },
+
+    // Get games by category.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/get-games-by-category?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game/GetGamesByCategory?{everything}"
+    },
+
+    // Get favorite games.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/get-favorite-games?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game/GetFavoriteGames?{everything}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Get rec games.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/get-rec-games/{userId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game/GetRecGames/{userId}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Get game by id.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/game/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game/{id}"
+    },
+
+    // Add comment to game.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-comment-to-game",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Comment",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Delete comment from game.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-comment-from-game/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Comment/{id}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Get comments.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/get-comments?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game/GetComments?{everything}"
+    },
+
+    // Do like operation.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/do-like-operation",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Comment/DoLikeOperation",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Check like existence.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/check-like-existence?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Comment/CheckExistence?{everything}"
+    },
+
+    // GetCountOfLikes.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/get-likes/{commentId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Comment/GetCountOfLikes/{commentId}"
+    },
+
+    // Add game in favorite list.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-game-to-fav-list",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game/AddToFavoriteList",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Remove game from favorite list.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/remove-game-from-fav-list?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game/RemoveFromFavoriteList?{everything}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Check game in favorite list.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/check-game-in-fav-list?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7300
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Game/CheckGameInFavoriteList?{everything}"
+    },
+
+    // Forum
+
+    // Get topics
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/get-topics?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Forum?{everything}"
+    },
+
+    // Add new post
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-post",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Post",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Get post by id
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/get-post/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Forum/{id}"
+    },
+
+    // Get replies
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/get-replies?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Forum/GetReplies?{everything}"
+    },
+
+    // Add post to favorite
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/add-post-to-favorite",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Post/AddPostToFavorite",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Delete post from favorite.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-post-from-favorite?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Post/DeletePostFromFavorite?{everything}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Check post in favorite.
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/check-post-in-favorite?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Post/CheckExistenceInFavorite?{everything}"
+    },
+
+    // Delete post.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-post/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Post/{id}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Send reply.
+    {
+      "UpstreamHttpMethod": [ "Post" ],
+      "UpstreamPathTemplate": "/send-reply",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Reply",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    // Delete reply.
+    {
+      "UpstreamHttpMethod": [ "Delete" ],
+      "UpstreamPathTemplate": "/delete-reply/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Reply/{id}",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/get-similar-posts?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Forum/GetSimilarPosts?{everything}"
+    }
+  ]
+}

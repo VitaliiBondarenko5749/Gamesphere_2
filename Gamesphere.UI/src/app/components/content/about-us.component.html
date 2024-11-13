@@ -1,0 +1,43 @@
+<div class="wrapper">
+  <div *ngIf="isVisibleHeader===true && isAuthorized === authorizationResponse.Authorized">
+    <authorized-header></authorized-header>
+  </div>
+  <div
+    *ngIf="isVisibleHeader===true && (isAuthorized === authorizationResponse.TokenExpired || isAuthorized == authorizationResponse.TokenNotFound)">
+    <unauthorized-header></unauthorized-header>
+  </div>
+  <div class="content">
+    <div class="new-content" *ngIf="isAuthorized === authorizationResponse.Authorized">
+      <img src="assets/images/ai_present.png" alt="No image...">
+      <div class="new-content-description">
+        <p class="spliter">Our new AI can help to determine a game by a gameplay screenshot</p>
+        <button class="ai-button spliter" (click)="navigateTo('predict-game')"><p>Try now</p></button>
+      </div>
+    </div>
+    <h1>About us</h1>
+    <p>
+      GameSphere is a leading gaming platform that offers a diverse range of services catering to gamers of all kinds.
+      Our company prides itself on providing an immersive gaming experience through our extensive game catalog and
+      vibrant
+      gaming community. <br>
+      At GameSphere, gamers can explore a vast collection of games spanning various genres, from action-packed
+      adventures to strategic simulations. Our catalog features both classic titles and the latest releases, ensuring
+      that every gamer can find something to suit their preferences. Whether you're into role-playing games,
+      first-person
+      shooters, or puzzle games, GameSphere has you covered. <br>
+      In addition to our comprehensive game catalog, GameSphere hosts a dynamic gaming forum where players can connect,
+      discuss their favorite games, share tips and strategies, and engage in lively debates. Our forum provides a space
+      for gamers to interact with like-minded individuals, form gaming clans, and stay updated on the latest industry
+      news
+      and trends. <br>
+      Furthermore, GameSphere is committed to fostering a supportive and inclusive gaming community. We prioritize
+      creating a welcoming environment where gamers of all backgrounds feel valued and respected. Through our forum and
+      social media channels, we encourage positive interactions and collaboration among gamers worldwide. <br>
+      Whether you're a casual gamer looking for new titles to play or a seasoned enthusiast seeking to connect with
+      fellow gamers, GameSphere offers an unparalleled gaming experience. Join us today and embark on your gaming
+      journey
+      with GameSphere!
+    </p>
+  </div>
+  <app-footer></app-footer>
+</div>

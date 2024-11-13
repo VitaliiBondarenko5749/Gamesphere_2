@@ -1,0 +1,135 @@
+<div class="wrapper">
+    <div *ngIf="isVisibleHeader===true && isAuthorized === authorizationResponse.Authorized">
+        <authorized-header></authorized-header>
+    </div>
+    <div
+        *ngIf="isVisibleHeader===true && (isAuthorized === authorizationResponse.TokenExpired || isAuthorized == authorizationResponse.TokenNotFound)">
+        <unauthorized-header></unauthorized-header>
+    </div>
+    <div class="content">
+        <div class="game-content">
+            <div class="short-game-info">
+                <div class="additional-functionalities">
+                    <img *ngIf="ownUserData.role === 'Admin' || ownUserData.role === 'Creator'"
+                        src="assets/images/DeleteB-icon.png" alt="No image..." (click)="deleteGame()">
+                    <img *ngIf="!isGameInFavoriteList && isAuthorized === authorizationResponse.Authorized"
+                        src="assets/images/Bookmark-add.png" alt="No image..." (click)="addGameInFavoriteList()">
+                    <img *ngIf="isGameInFavoriteList && isAuthorized === authorizationResponse.Authorized"
+                        src="assets/images/Bookmark-added.png" alt="No image..." (click)="removeGameFromFavoriteList()">
+                </div>
+                <div class="short-game-info-left">
+                    <img [src]="game.mainImageDirectory" alt="No image...">
+                    <p>{{game.name}}</p>
+                </div>
+                <div class="short-game-info-right">
+                    <div class="game-info">
+                        <p>Views: {{game.views}}</p>
+                    </div>
+                    <div class="game-info">
+                        <p>Release date: {{game.releaseDate}}</p>
+                    </div>
+                    <div class="game-info">
+                        <p>Publisher: {{game.publisherName}}</p>
+                    </div>
+                    <div class="game-info">
+                        <p>Categories: {{game.categories.join(', ')}}</p>
+                    </div>
+                    <div class="game-info">
+                        <p>Developers: {{game.developers.join(', ')}}</p>
+                    </div>
+                    <div class="game-info">
+                        <p>Languages: {{game.languages.join(', ')}}</p>
+                    </div>
+                    <div class="game-info">
+                        <p>Platforms: {{game.platforms.join(', ')}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="description-block">
+                <p class="content-description">Description:</p>
+                <p id="description"><i>{{game.description}}</i></p>
+            </div>
+            <div class="video-block" *ngIf="game.videoLinks.length > 0">
+                <p class="content-description">Trailer / Gameplay:</p>
+
+                <div class="video-content">
+                    <div class="video" *ngFor="let videoLink of game.videoLinks">
+                        <iframe width="560" height="315" [src]="getYoutubeFrameLink(videoLink)"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="image-block" *ngIf="game.images.length > 0">
+                <p class="content-description">Images:</p>
+
+                <div class="image-content">
+                    <div class="image" *ngFor="let image of game.images">
+                        <img [src]="image" alt="No image...">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="comment-content">
+            <p class="content-description">Reviews:</p>
+            <div class="page-content-line"></div>
+
+            <form id="add-comment-form" *ngIf="isAuthorized === authorizationResponse.Authorized">
+                <textarea name="comment" [(ngModel)]="commentText" maxlength="1000" placeholder="Enter your review...">
+                </textarea>
+                <input type="submit" value="Add review" (click)="addComment(commentText)">
+            </form>
+
+            <div class="comments">
+                <div class="comment" *ngFor="let comment of comments | paginate: { itemsPerPage: pagination.pageSize,
+                    currentPage: pagination.page, totalItems: pagination.count};">
+                    <div class="page-content-line-1"></div>
+
+                    <div class="comment-content">
+                        <div class="c-content">
+                            <div class="comment-content-left">
+                                <img [src]="comment.iconDirectory" alt="No image..">
+                                <p>{{comment.userName}}</p>
+                            </div>
+
+                            <div class="comment-content-center">
+                                <p id="desc"><i>{{comment.content}}</i></p>
+                            </div>
+
+                            <div class="comment-content-right">
+                                <div class="comment-operations">
+                                    <img src="assets/images/Report.png" alt="No image..." (click)="reportUser(comment)"
+                                    *ngIf="(ownUserData.role === 'User' && comment.role !=='Creator' && ownUserData.username !== comment.userName)
+                                    || (ownUserData.role === 'Admin' && comment.role === 'Admin' && ownUserData.username !== comment.userName)">
+
+                                    <img src="assets/images/DeleteB-icon.png" alt="No image..." (click)="deleteComment(comment)" 
+                                    *ngIf="(ownUserData.role === 'Creator' && comment.role !=='Creator') 
+                                    || (ownUserData.role === 'Admin' && comment.role === 'User') 
+                                    || (ownUserData.username === comment.userName)">
+
+                                    <img src="assets/images/Block.png" alt="No image..." (click)="banUser(comment)"
+                                    *ngIf="(ownUserData.username !== comment.userName) && comment.role !== 'Creator' 
+                                    && ((ownUserData.role === 'Creator' && (comment.role === 'Admin' || comment.role === 'User'))
+                                    || (ownUserData.role === 'Admin' && comment.role === 'User'))">
+                                </div>
+
+                                <img *ngIf="comment.isLiked" src="assets/images/Liked.png" alt="No image..." 
+                                (click)="doLikeOperation(comment)">
+                                <img *ngIf="!comment.isLiked" src="assets/images/Unliked.png" alt="No image..."
+                                (click)="doLikeOperation(comment)">
+                                <p>{{comment.countOfLikes}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="no-comments pagination-block" *ngIf="comments.length === 0">There are no reviews here...</p>
+            <div class="pagination-block" *ngIf="comments.length > 0">
+                <pagination-controls [responsive]="true" previousLabel="Prev" nextLabel="Next"
+                    (pageChange)="onPageChange($event)"></pagination-controls>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

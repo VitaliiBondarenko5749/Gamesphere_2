@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Lemon';
+    src: url("https://fonts.googleapis.com/css?family=Lemon&display=swap");
+}
+
+footer {
+    background-color: rgba(32, 27, 27, 1);
+    height: 130px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    padding: 0px 100px;
+}
+
+p {
+    font-family: 'Lemon';
+    font-weight: Regular;
+    color: white;
+}
+
+.block-1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.block-1 p {
+    font-size: 20px;
+}
+
+.block-1 img {
+    height: 50px;
+}
+
+.social-network-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+a:hover {
+    animation: heartbeat 1s infinite;
+}
+
+.block-2 {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.text-1 {
+    font-size: 40px;
+}
+
+.text-2 {
+    font-size: 24px;
+}
+
+.block-2-gamepad-image {
+    height: 90px;
+    width: 90px;
+    transform: rotate(60deg);
+}

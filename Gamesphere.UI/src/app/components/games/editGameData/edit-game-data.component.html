@@ -1,0 +1,114 @@
+<div class="wrapper">
+    <div *ngIf="isAuthorized === authorizationResponse.Authorized">
+        <authorized-header></authorized-header>
+    </div>
+    <div class="content">
+        <div class="page-content">
+            <p>Choose any operation from the list</p>
+            <select name="Choose operation" id="selectOption" (change)="onChangeOption($event)">
+                <option value="Category">Category</option>
+                <option value="Developer">Developer</option>
+                <option value="Language">Language</option>
+                <option value="Platform">Platform</option>
+                <option value="Publisher">Publisher</option>
+                <option value="Game">Game</option>
+            </select>
+        </div>
+        <div class="page-content-line"></div>
+        <div class="form-content" [ngStyle]="{'background-color': 
+        (top10Categories.length > 0 || top10Developers.length > 0 || top10Languages.length > 0 
+            || top10Platforms.length > 0 || top10Publishers.length > 0) ? 'rgba(32, 27, 27, 1)' : 'white'}">
+            <!--CATEGORY FORM-->
+            <form id="CategoryForm">
+                <div class="form-block">
+                    <input class="form-spaces" type="text" name="name" autocomplete="name" [(ngModel)]="searchText" 
+                    (input)="getTop10Categories()" id="categoryName">
+                    <input class="form-spaces" type="submit" value="Add" (click)="addCategory()"
+                    [disabled]="existsInCategories() === true" [ngStyle]="{'display': (existsInCategories() === true) ? 'none' : 'block'}"
+                    id="categoryInput">
+                    <img class="form-spaces reset-icon" src="assets/images/Reset-icon.png" alt="No image..." (click)="resetForm()">
+                </div>
+                <div class="form-list" *ngFor="let category of top10Categories; let i = index;">
+                    <div class="form-list-line"></div>
+                    <div class="form-item">
+                        <p>{{category.name}}</p>
+                        <img src="assets/images/Delete-icon.png" alt="No image..." (click)="deleteCategory(category)">
+                    </div>
+                </div>
+            </form>
+
+            <!--DEVELOPER FORM-->
+            <form id="DeveloperForm" style="display: none;">
+                <div class="form-block">
+                    <input class="form-spaces" type="text" autocomplete="name" name="name" [(ngModel)]="searchText" 
+                    (input)="getTop10Developers()" id="developerInput">
+                    <input class="form-spaces" type="submit" value="Add" (click)="addDeveloper()"
+                    [disabled]="existsInDevelopers() === true" [ngStyle]="{'display': (existsInDevelopers() === true) ? 'none' : 'block'}">
+                    <img class="form-spaces reset-icon" src="assets/images/Reset-icon.png" alt="No image..." (click)="resetForm()">
+                </div>
+                <div class="form-list" *ngFor="let developer of top10Developers; let i = index;">
+                    <div class="form-list-line"></div>
+                    <div class="form-item">
+                        <p>{{developer.name}}</p>
+                        <img src="assets/images/Delete-icon.png" alt="No image..." (click)="deleteDeveloper(developer)">
+                    </div>
+                </div>
+            </form>
+
+            <!--LANGUAGE FORM-->
+            <form id="LanguageForm" style="display: none;">
+                <div class="form-block">
+                    <input class="form-spaces" type="text" name="name" autocomplete="name" [(ngModel)]="searchText" (input)="getTop10Languages()">
+                    <input class="form-spaces" type="submit" value="Add" (click)="addLanguage()"
+                    [disabled]="existsInLanguages() === true" [ngStyle]="{'display': (existsInLanguages() === true) ? 'none' : 'block'}">
+                    <img class="form-spaces reset-icon" src="assets/images/Reset-icon.png" alt="No image..." (click)="resetForm()">
+                </div>
+                <div class="form-list" *ngFor="let language of top10Languages; let i = index;">
+                    <div class="form-list-line"></div>
+                    <div class="form-item">
+                        <p>{{language.name}}</p>
+                        <img src="assets/images/Delete-icon.png" alt="No image..." (click)="deleteLanguage(language)">
+                    </div>
+                </div>
+            </form>
+
+            <!--PLATFORM FORM-->
+            <form id="PlatformForm" style="display: none;">
+                <div class="form-block">
+                    <input class="form-spaces" type="text" autocomplete="name" name="name" [(ngModel)]="searchText" (input)="getTop10Platforms()">
+                    <input class="form-spaces" type="submit" value="Add" (click)="addPlatform()"
+                    [disabled]="existsInPlatforms() === true" [ngStyle]="{'display': (existsInPlatforms() === true) ? 'none' : 'block'}">
+                    <img class="form-spaces reset-icon" src="assets/images/Reset-icon.png" alt="No image..." (click)="resetForm()">
+                </div>
+                <div class="form-list" *ngFor="let platform of top10Platforms; let i = index;">
+                    <div class="form-list-line"></div>
+                    <div class="form-item">
+                        <p>{{platform.name}}</p>
+                        <img src="assets/images/Delete-icon.png" alt="No image..." (click)="deletePlatform(platform)">
+                    </div>
+                </div>
+            </form>
+
+            <!--PUBLISHER FORM-->
+            <form id="PublisherForm" style="display: none;">
+                <div class="form-block">
+                    <input class="form-spaces" type="text" autocomplete="name" name="name" [(ngModel)]="searchText" (input)="getTop10Publishers()">
+                    <input class="form-spaces" type="submit" value="Add" (click)="addPublisher()"
+                    [disabled]="existsInPublishers() === true" [ngStyle]="{'display': (existsInPublishers() === true) ? 'none' : 'block'}">
+                    <img class="form-spaces reset-icon" src="assets/images/Reset-icon.png" alt="No image..." (click)="resetForm()">
+                </div>
+                <div class="form-list" *ngFor="let publsiher of top10Publishers; let i = index;">
+                    <div class="form-list-line"></div>
+                    <div class="form-item">
+                        <p>{{publsiher.name}}</p>
+                        <img src="assets/images/Delete-icon.png" alt="No image..." (click)="deletePublisher(publsiher)">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <form id="GameForm" style="display: none;" autocomplete="on">
+            <add-game-component></add-game-component>
+        </form>
+    </div>
+    <app-footer></app-footer>
+</div>

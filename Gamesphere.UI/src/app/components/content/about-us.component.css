@@ -1,0 +1,105 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'Mitr';
+  src: url("https://fonts.googleapis.com/css?family=Mitr&display=swap");
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 25px;
+  margin: 20px 0px;
+}
+
+app-footer {
+  flex-shrink: 0;
+}
+
+.content p {
+  padding: 0px 100px;
+  font-family: 'Mitr';
+  font-weight: 600;
+  font-size: 20px;
+  justify-content: center;
+}
+
+h1 {
+  font-family: 'Mitr';
+  font-weight: 600;
+}
+
+.new-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0px 100px;
+  margin-top: 25px;
+  align-items: center;
+  background-color: rgba(32, 27, 27, 1);
+}
+
+.new-content img {
+  max-width: 800px;
+  min-width: 200px;
+  max-width: 900px;
+  min-height: 300px;
+}
+
+.new-content-description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+}
+
+.new-content-description p {
+  padding: 0;
+  margin: 0;
+  padding-left: 20px;
+  color: white;
+  font-size: 25px;
+  font-weight: 100;
+}
+
+.ai-button{
+  display: flex;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  background-color: rgb(243, 215, 10);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.ai-button:hover{
+  transform: scale(1.2);
+}
+
+.ai-button p{
+  margin: 0;
+  padding: 0;
+  font-weight: 100;
+  color: white;
+}
+
+.spliter {
+  margin: 20px 0px;
+}

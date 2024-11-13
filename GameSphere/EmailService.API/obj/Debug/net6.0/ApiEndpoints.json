@@ -1,0 +1,18 @@
+[
+  {
+    "ContainingType": "EmailService.API.Controllers.EmailController",
+    "Method": "SendAsync",
+    "RelativePath": "api/Email",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "EmailService.API.ViewModels.SendEmailViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

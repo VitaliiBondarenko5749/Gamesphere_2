@@ -1,0 +1,27 @@
+{
+  "profiles": {
+    "OcelotAPIGateway": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:1000",
+      "useSSL": true
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "launchUrl": "https://localhost:1000",
+      "environmentVariables": {
+        "ASPNETCORE_URLS": "https://localhost:1000"
+      },
+      "distributionName": ""
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:12618",
+      "sslPort": 44372
+    }
+  }
+}

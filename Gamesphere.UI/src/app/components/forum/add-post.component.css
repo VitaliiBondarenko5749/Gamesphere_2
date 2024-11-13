@@ -1,0 +1,324 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'Mitr';
+  src: url("https://fonts.googleapis.com/css?family=Mitr&display=swap");
+}
+
+@font-face {
+  font-family: 'Lemon';
+  src: url("https://fonts.googleapis.com/css?family=Lemon&display=swap");
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  margin: 0px 100px;
+}
+
+app-footer {
+  flex-shrink: 0;
+}
+
+.page-content-description {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  margin-left: 30px;
+}
+
+.page-content p {
+  margin-left: 30px;
+  font-family: 'Mitr';
+  font-weight: 600;
+  font-size: 24px;
+  padding: 0;
+  margin: 10px;
+}
+
+.page-content-line {
+  height: 5px;
+  background-color: rgba(32, 27, 27, 1);
+  width: 100%;
+}
+
+form {
+  width: 100%;
+  margin: 20px 30px;
+}
+
+.game-selector {
+  width: 100%;
+  margin: 0px 30px;
+}
+
+label {
+  font-family: 'Mitr';
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.select-game-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+input {
+  font-family: 'Mitr';
+  font-weight: 600;
+  font-size: 25px;
+  height: 30px;
+  background-color: rgba(237, 237, 237, 1);
+  border: 0px solid;
+  display: flex;
+  text-indent: 15px;
+}
+
+.select-game-content input {
+  min-width: 400px;
+}
+
+.game-item {
+  min-width: 400px;
+  background-color: rgba(32, 27, 27, 1);
+  justify-content: center;
+  display: flex;
+}
+
+.game-item p {
+  color: white;
+  font-family: 'Mitr';
+  cursor: pointer;
+  transition: transform 0.3s;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.game-item p:hover {
+  transform: scale(1.2);
+}
+
+.chosen-game {
+  display: flex;
+}
+
+.chosen-game p {
+  font-family: 'Mitr';
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.item-stack {
+  background-color: rgba(32, 27, 27, 1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 20px;
+  border-radius: 15px;
+}
+
+.item-stack p {
+  color: white;
+  margin-left: 5px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.item-stack img {
+  margin-left: 15px;
+  width: 45px;
+  height: 40px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.item-stack img:hover {
+  transform: scale(1.2);
+}
+
+.topic-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px 30px;
+  margin-top: 10px;
+}
+
+#subject {
+  margin-top: 5px;
+}
+
+.error-message {
+  color: red;
+  font-size: 25px;
+  margin-top: 5px;
+}
+
+.error-input {
+  border: 2px solid red;
+}
+
+.text-block {
+  display: flex;
+  max-width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 30px;
+}
+
+.text-block div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upload-button {
+  background-color: white;
+  border: 2px solid;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #45a049;
+}
+
+#editor{
+  max-width: 100%;
+}
+
+.ql-toolbar {
+  width: 80%; /* Встановіть бажану ширину */
+  max-width: 600px; /* Максимальна ширина, якщо потрібно */
+  margin: 0 auto; /* Центрування панелі інструментів */
+}
+
+.ql-container {
+  display: block;
+  max-width: 800px; /* Фіксована або максимальна ширина */
+  width: 100%;
+  min-height: 600px;
+  margin: 0 auto; /* Центруємо редактор всередині батьківського елемента */
+  box-sizing: border-box; /* Враховує padding та border в ширині */
+}
+
+.ql-editor {
+  margin-top: 10px;
+  max-width: 800px; /* Фіксована або максимальна ширина */
+  width: 100%; /* Ширина 100% від контейнера */
+  overflow-y: auto; /* Скрол всередині редактора, якщо текст виходить за межі */
+  word-wrap: break-word; /* Перенос слів */
+  white-space: pre-wrap; /* Збереження відступів та переноси рядків */
+  box-sizing: border-box; /* Враховує padding і border у ширині */
+}
+
+.ql-editor p {
+  margin: 0; /* Відміняємо відступи для абзаців */
+  word-break: break-word; /* Перенос довгих слів */
+  text-wrap: wrap;
+}
+
+.button-block {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.splitter {
+  margin: 0px 10px;
+}
+
+.button-block button {
+  height: 30px;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-radius: 20px;
+  border: 0px solid;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.button-block button:hover {
+  transform: scale(1.25);
+}
+
+.button-block button p {
+  font-family: 'Mitr';
+  font-size: 18px;
+}
+
+#b2 {
+  background-color: rgba(255, 165, 0, 1);
+}
+
+#b2 p {
+  color: white;
+}
+
+input[type="submit"] {
+  width: 100px;
+  font-family: 'Mitr';
+  font-weight: 600;
+  font-size: 15px;
+  background-color: red;
+  border: 0px;
+  transition: transform 0.3s;
+  text-indent: 0px;
+  color: white;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+input[type="submit"]:hover {
+  transform: scale(1.2);
+}
+
+.text-block div p {
+  font-family: 'Mitr';
+  font-weight: 600;
+  font-size: 30px;
+}

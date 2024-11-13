@@ -1,0 +1,213 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Mitr';
+    src: url("https://fonts.googleapis.com/css?family=Mitr&display=swap");
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    margin: 20px 0px;
+}
+
+app-footer {
+    flex-shrink: 0;
+}
+
+.form-content {
+    display: flex;
+    background-color: rgba(32, 27, 27, 1);
+    width: 450px;
+    min-height: 350px;
+    max-height: 500px;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.form-content p {
+    color: white;
+    font-family: 'Mitr';
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.icon-content {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 400px;
+    align-items: center;
+}
+
+.reset-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 2s ease;
+    cursor: pointer;
+}
+
+.reset-icon:hover {
+    transform: rotate(360deg);
+}
+
+.close-window-icon {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s;
+}
+
+.close-window-icon:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    width: 300px;
+    border-radius: 20px;
+    font-family: 'Mitr';
+    font-weight: 600;
+    font-size: 15px;
+    height: 30px;
+    border: 0px;
+    text-indent: 15px;
+}
+
+::placeholder {
+    color: black;
+    padding-left: 15px;
+}
+
+input::-webkit-input-placeholder {
+    text-indent: 0px;
+    transition: text-indent 0.3s ease;
+}
+
+input:focus::-webkit-input-placeholder {
+    text-indent: 500px;
+    transition: text-indent 0.3s ease;
+}
+
+input[type="submit"] {
+    width: 100px;
+    font-family: 'Mitr';
+    font-weight: 600;
+    font-size: 15px;
+    background-color: red;
+    border: 0px;
+    transition: transform 0.3s;
+    text-indent: 0px;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    transform: scale(1.2);
+}
+
+.input-username-or-email {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    margin: 0px;
+}
+
+.input-password {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.password-content {
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.password-content img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.password-content input {
+    width: 260px;
+}
+
+.password-content input:focus {
+    outline: none;
+    border: none;
+}
+
+.error-input {
+    background-color: red;
+    border-radius: 20px;
+}
+
+.error-message {
+    color: white;
+    margin: 0px 20px;
+    font-size: 15px;
+}
+
+.input-spaces {
+    margin: 10px 0px;
+}
+
+form p {
+    font-size: 10px;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+a:hover {
+    transform: scale(1.2);
+    color: dodgerblue;
+}
+
+.navigation-links p {
+    font-size: 13px;
+    transition: transform 0.3s;
+}
+
+.navigation-links p:hover {
+    transform: scale(1.2);
+    color: dodgerblue;
+}
+
+.navigation-links {
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}

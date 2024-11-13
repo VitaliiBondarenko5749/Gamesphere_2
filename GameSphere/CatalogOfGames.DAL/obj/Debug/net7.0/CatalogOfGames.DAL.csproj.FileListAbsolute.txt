@@ -1,0 +1,14 @@
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\bin\Debug\net7.0\CatalogOfGames.DAL.deps.json
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\bin\Debug\net7.0\CatalogOfGames.DAL.runtimeconfig.json
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\bin\Debug\net7.0\CatalogOfGames.DAL.dll
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\bin\Debug\net7.0\CatalogOfGames.DAL.pdb
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\obj\Debug\net7.0\CatalogOfGames.DAL.csproj.AssemblyReference.cache
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\obj\Debug\net7.0\CatalogOfGames.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\obj\Debug\net7.0\CatalogOfGames.DAL.AssemblyInfoInputs.cache
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\obj\Debug\net7.0\CatalogOfGames.DAL.AssemblyInfo.cs
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\obj\Debug\net7.0\CatalogOfGames.DAL.csproj.CoreCompileInputs.cache
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\obj\Debug\net7.0\CatalogOfGames.DAL.dll
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\obj\Debug\net7.0\refint\CatalogOfGames.DAL.dll
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\obj\Debug\net7.0\CatalogOfGames.DAL.pdb
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\obj\Debug\net7.0\CatalogOfGames.DAL.genruntimeconfig.cache
+D:\GameSphere\Project\GameSphere\CatalogOfGames.DAL\obj\Debug\net7.0\ref\CatalogOfGames.DAL.dll

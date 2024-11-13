@@ -1,0 +1,141 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'Mitr';
+  src: url("https://fonts.googleapis.com/css?family=Mitr&display=swap");
+}
+
+@font-face {
+  font-family: 'Lemon';
+  src: url("https://fonts.googleapis.com/css?family=Lemon&display=swap");
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  margin: 0px 100px;
+}
+
+app-footer {
+  flex-shrink: 0;
+}
+
+.page-content-description{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.page-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-content p{
+    margin-left: 30px;
+    font-family: 'Mitr';
+    font-weight: 600;
+    font-size: 24px;
+    padding: 0;
+    margin: 10px;
+}
+
+.page-content img{
+    margin-right: 30px;
+    width: 45px;
+    height: 40px;
+    transition: transform 0.3s;
+}
+
+.page-content img:hover{
+    transform: scale(1.3);
+    cursor: pointer;
+}
+
+.page-content-line{
+    height: 5px;
+    background-color: rgba(32, 27, 27, 1);
+    width: 100%;
+}
+
+.category-content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.static-category{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    background-color: rgba(32, 27, 27, 1);
+    border-radius: 20px;
+}
+
+.static-category p{
+    margin-left: 30px;
+}
+
+.spaces{
+    margin: 5px 0px;
+}
+
+.category-content p{
+    font-weight: 600;
+    font-family: 'Mitr';
+    font-size: 24px;
+    color: white;
+    transition: transform 0.3s;
+}
+
+.category-content p:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.category{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    background-color: rgba(32, 27, 27, 1);
+    border-radius: 20px;
+    justify-content: space-between;
+}
+
+ .category img{
+    width: 35px;
+    height: 30px;
+    transition: transform 0.3s;
+ }
+
+ .category img:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+ }
+
+ .category p{
+    margin-left: 30px;
+ }
+
+ .category img{
+    margin-right: 30px;
+ }

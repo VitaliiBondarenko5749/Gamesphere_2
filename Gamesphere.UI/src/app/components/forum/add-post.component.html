@@ -1,0 +1,71 @@
+<div class="wrapper">
+    <div *ngIf="isVisibleHeader === true && isAuthorized === authorizationResponse.Authorized">
+        <authorized-header></authorized-header>
+    </div>
+    <div class="content">
+        <div class="page-content-description">
+            <div class="page-content">
+                <p>Add new topic</p>
+            </div>
+        </div>
+
+        <div class="page-content-line"></div>
+
+        <form #myForm="ngForm">
+            <div class="game-selector">
+                <div class="select-game" *ngIf="selectedGame === null">
+                    <label for="game-finder">Select game you want to talk about:</label>
+                    <div class="select-game-content">
+                        <input type="text" id="game-finder" [(ngModel)]="gameText" (input)="getTop10GamesByName()">
+                        <div class="game-item" *ngFor="let game of games">
+                            <p (click)="selectGame(game)">{{game.name}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chosen-game" *ngIf="selectedGame !== null">
+                    <p>Selected game:</p>
+                    <div class="item-stack">
+                        <p>{{selectedGame.name}}</p>
+                        <img src="assets/images/Delete-icon.png" alt="No image..." (click)="cleanSelectedGame()">
+                    </div>
+                </div>
+            </div>
+            <div class="topic-block">
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" [(ngModel)]="post.subject" name="subject" minlength="2" required
+                    [ngClass]="{'error-input': (myForm.invalid && myForm.controls['subject'].invalid && myForm.controls['subject'].touched)}">
+                <span
+                    *ngIf="myForm.invalid && myForm.controls['subject']?.invalid && myForm.controls['subject']?.touched"
+                    class="error-message"> ◦ Subject cannot be empty!</span>
+            </div>
+            <div class="text-block">
+                <div>
+                    <p>Text:</p>
+                    <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*"
+                        style="display: none;" />
+                    <button (click)="triggerFileInput()" class="upload-button">
+                        <p style="font-size: 20px;">
+                        Resize image for editor
+                        </p>
+                    </button>
+                </div>
+                <quill-editor id="editor" [(ngModel)]="post.text" [styles]="{'min-height': '400px'}"
+                    [modules]="quillConfig" (onContentChanged)="onContentChanged($event)"></quill-editor>
+                <div>
+                    <span *ngIf="earnLimitSymbols" class="error-message"> ◦ Text length can't be more than 10000
+                        symbols!</span>
+                </div>
+            </div>
+            <div class="button-block">
+                <button class="splitter" id="b1" (click)="toPrevPage()">
+                    <p>Cancel</p>
+                </button>
+                <button class="splitter" id="b2" (click)="cleanForm()">
+                    <p>Clean</p>
+                </button>
+                <input class="splitter" type="submit" value="Create" (click)="onSubmit(myForm)">
+            </div>
+        </form>
+    </div>
+    <app-footer></app-footer>
+</div>

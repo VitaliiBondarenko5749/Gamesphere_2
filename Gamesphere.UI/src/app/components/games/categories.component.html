@@ -1,0 +1,38 @@
+<div class="wrapper">
+    <div *ngIf="isVisibleHeader===true && isAuthorized === authorizationResponse.Authorized">
+        <authorized-header></authorized-header>
+    </div>
+    <div
+        *ngIf="isVisibleHeader===true && (isAuthorized === authorizationResponse.TokenExpired || isAuthorized == authorizationResponse.TokenNotFound)">
+        <unauthorized-header></unauthorized-header>
+    </div>
+    <div class="content">
+        <div class="page-content-description">
+            <div class="page-content">
+                <p>Categories</p>
+                <img src="assets/images/Add-circle.png" alt="No image..."
+                    *ngIf="isAuthorized == authorizationResponse.Authorized && (ownUserData.role === 'Admin' 
+                    || ownUserData.role === 'Creator')" (click)="addCategory()">
+            </div>
+        </div>
+        <div class="page-content-line"></div>
+
+        <div class="category-content">
+            <div class="static-category spaces">
+                <p (click)="navigateTo('All games')">All games</p>
+            </div>
+            <div *ngIf="isAuthorized === authorizationResponse.Authorized" class="static-category spaces">
+                <p (click)="navigateTo('Favorite games')">Favorite games</p>
+            </div>
+            <div *ngFor="let category of categories; let i = index;">
+                <div class="category spaces">
+                    <p (click)="navigateTo(category.name)">{{category.name}}</p>
+                    <img *ngIf="isAuthorized === authorizationResponse.Authorized 
+                    && (ownUserData.role === 'Admin' || ownUserData.role === 'Creator')" 
+                    src="assets/images/Delete-icon.png" alt="No image..." (click)="deleteCategory(category)">
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

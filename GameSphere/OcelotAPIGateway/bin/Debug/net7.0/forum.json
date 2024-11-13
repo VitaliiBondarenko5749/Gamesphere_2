@@ -1,0 +1,16 @@
+{
+  "Routes": [
+    {
+      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/get-topics?{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2000
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Forum?{everything}"
+    }
+  ]
+}

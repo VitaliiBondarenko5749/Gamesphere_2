@@ -1,0 +1,57 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\GameSphere\\APIs\\GameSphere\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{95D469FF-2AAE-445D-97EE-FA3C6CB50431}|DropboxCloudStorage.API\\DropboxCloudStorage.API.csproj|d:\\gamesphere\\apis\\gamesphere\\dropboxcloudstorage.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{95D469FF-2AAE-445D-97EE-FA3C6CB50431}|DropboxCloudStorage.API\\DropboxCloudStorage.API.csproj|solutionrelative:dropboxcloudstorage.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9F364861-EF51-48D9-B3E0-25E84CA00640}|Forum.BAL\\Forum.BAL.csproj|d:\\gamesphere\\apis\\gamesphere\\forum.bal\\services\\ipostservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9F364861-EF51-48D9-B3E0-25E84CA00640}|Forum.BAL\\Forum.BAL.csproj|solutionrelative:forum.bal\\services\\ipostservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IPostService.cs",
+              "DocumentMoniker": "D:\\GameSphere\\APIs\\GameSphere\\Forum.BAL\\Services\\IPostService.cs",
+              "RelativeDocumentMoniker": "Forum.BAL\\Services\\IPostService.cs",
+              "ToolTip": "D:\\GameSphere\\APIs\\GameSphere\\Forum.BAL\\Services\\IPostService.cs",
+              "RelativeToolTip": "Forum.BAL\\Services\\IPostService.cs",
+              "ViewState": "AgIAAKMAAAAAAAAAAKBkwKsAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T16:37:26.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\GameSphere\\APIs\\GameSphere\\DropboxCloudStorage.API\\appsettings.json",
+              "RelativeDocumentMoniker": "DropboxCloudStorage.API\\appsettings.json",
+              "ToolTip": "D:\\GameSphere\\APIs\\GameSphere\\DropboxCloudStorage.API\\appsettings.json",
+              "RelativeToolTip": "DropboxCloudStorage.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAACgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-11T10:23:33.9Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

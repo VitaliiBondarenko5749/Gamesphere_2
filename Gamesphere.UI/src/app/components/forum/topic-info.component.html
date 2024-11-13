@@ -1,0 +1,190 @@
+<div class="wrapper">
+    <div *ngIf="isVisibleHeader===true && isAuthorized === authorizationResponse.Authorized">
+        <authorized-header></authorized-header>
+    </div>
+    <div
+        *ngIf="isVisibleHeader===true && (isAuthorized === authorizationResponse.TokenExpired || isAuthorized == authorizationResponse.TokenNotFound)">
+        <unauthorized-header></unauthorized-header>
+    </div>
+    <div class="content">
+        <div class="post-block">
+            <div class="post-block-header">
+                <h1>{{post?.topic}}</h1>
+                <p>Views: {{post?.views}}</p>
+            </div>
+            <div class="post-block-main">
+                <div class="post-block-main-left">
+                    <div class="post-block-main-left-content">
+                        <p class="post-date spliter">{{post?.createdAt}}</p>
+                        <img [src]="post?.user?.iconDirectory" alt="No image...">
+                        <p class="post-username spliter">{{post?.user?.userName}}</p>
+                        <p class="dot">○</p>
+                        <p class="post-user-role spliter">{{post?.user?.role}}</p>
+
+                        <div class="post-game-block" *ngIf="post?.game">
+                            <p class="dot">○</p>
+                            <img [src]="post?.game?.mainImageDirectory" alt="No image" class="spliter">
+                            <p class="post-game-name spliter">{{post?.game?.name}}</p>
+                        </div>
+
+                        <div class="post-actions">
+                            <img src="assets/images/Delete-icon.png" alt="No image..."
+                                *ngIf="ownUserData.id === post?.user?.id" (click)="deletePost()">
+                            <img src="assets/images/Bookmark-add.png" alt="No image..." class="ch-clr"
+                                *ngIf="!isSavedPost && isAuthorized === authorizationResponse.Authorized"
+                                (click)="addPostToFavorite()">
+                            <img src="assets/images/Bookmark-added.png" alt="No image..." class="ch-clr"
+                                *ngIf="isSavedPost && isAuthorized === authorizationResponse.Authorized"
+                                (click)="deletePostFromFavorite()">
+                        </div>
+                    </div>
+                </div>
+                <div class="post-block-main-right ql-editor" [innerHTML]="post?.content">
+                </div>
+            </div>
+            <div class="post-block-buttons" *ngIf="isAuthorized === authorizationResponse.Authorized">
+                <button id="rem-rep" class="post-button-spliter" *ngIf="!isReplyToPostFormVisible && ownUserData.id !== post?.user?.id && ((ownUserData.role === 'Creator' && (post?.user?.role === 'Admin' 
+                || post?.user?.role === 'User')) || (ownUserData.role === 'Admin' && post?.user?.role === 'User'))"
+                    (click)="removePostAsPrivilegedUser()">
+                    <p>Remove</p>
+                </button>
+                <button id="rem-rep" class="post-button-spliter"
+                    *ngIf="!isReplyToPostFormVisible && ((ownUserData.id !== post?.user?.id && (ownUserData.role === 'Admin' && post?.user?.role === 'Admin'))
+                || (ownUserData.id !== post?.user?.id && ownUserData.role === 'User' && (post?.user?.role === 'Admin' || post?.user?.role === 'User')))"
+                    (click)="reportPost()">
+                    <p>Report</p>
+                </button>
+                <button *ngIf="!isReplyToPostFormVisible" id="reply" (click)="isReplyToPostFormVisible = true;">
+                    <p>Reply</p>
+                </button>
+            </div>
+            <form class="post-block-reply-form" *ngIf="isReplyToPostFormVisible">
+                <div class="image-resize-div">
+                    <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*"
+                        style="display: none;" />
+                    <button (click)="triggerFileInput()" class="upload-button">
+                        <p style="font-size: 15px;">
+                            Resize image for editor
+                        </p>
+                    </button>
+                </div>
+                <quill-editor id="editor" [(ngModel)]="replyToPostModel.content" [styles]="{'min-height': '200px'}"
+                    [modules]="quillConfig" (onContentChanged)="onContentChanged($event)"></quill-editor>
+                <span *ngIf="earnLimitSymbols" class="error-message"> ◦ Text length can't be more than 10000
+                    symbols!</span>
+                <div class="editor-buttons">
+                    <button id="rem-rep" (click)="isReplyToPostFormVisible = false;">
+                        <p>Cancel</p>
+                    </button>
+                    <button id="editor-clean" (click)="replyToPostModel.content = '';">
+                        <p>Clean</p>
+                    </button>
+                    <input *ngIf="!earnLimitSymbols" type="submit" value="Send" (click)="sendReply(replyToPostModel)">
+                </div>
+            </form>
+        </div>
+
+        <div class="replies-block">
+            <p *ngIf="replies.length === 0" id="no-replies">No replies yet...</p>
+
+            <div class="reply-block" *ngFor="let reply of replies;" [id]="'reply-' + reply.id">
+                <div class="line"></div>
+
+                <div class="reply-to" (click)="scrollToReply(reply)">
+                    <p>{{reply.options.replyToText}}</p>
+                    <div *ngIf="!reply.replyToId" class="triangle"></div>
+                    <div *ngIf="reply.replyToId" class="triangle-reverse"></div>
+                </div>
+                <div class="post-block-main">
+                    <div class="post-block-main-left">
+                        <div class="post-block-main-left-content">
+                            <p class="post-date spliter">{{reply.createdAt}}</p>
+                            <img [src]="reply.user.iconDirectory" alt="No image...">
+                            <p class="post-username spliter">{{reply.user.userName}}</p>
+                            <p class="dot">○</p>
+                            <p class="post-user-role spliter">{{reply.user.role}}</p>
+                            <div class="post-actions">
+                                <img src="assets/images/Delete-icon.png" alt="No image..."
+                                    *ngIf="ownUserData.id === reply.user.id" (click)="deleteReply(reply.id)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="post-block-main-right ql-editor" [innerHTML]="reply.content"></div>
+                </div>
+
+                <div class="post-block-buttons" *ngIf="isAuthorized === authorizationResponse.Authorized">
+                    <button id="rem-rep" class="post-button-spliter" *ngIf="!reply.options.isFormVisible && ownUserData.id !== reply.user.id && ((ownUserData.role === 'Creator' && (reply.user.role === 'Admin' 
+                    || reply.user.role === 'User')) || (ownUserData.role === 'Admin' && reply.user.role === 'User'))"
+                        (click)="removeReplyAsPrivilegedUser(reply)">
+                        <p>Remove</p>
+                    </button>
+                    <button id="rem-rep" class="post-button-spliter"
+                        *ngIf="!reply.options.isFormVisible && ((ownUserData.id !== reply.user.id && (ownUserData.role === 'Admin' && reply.user.role === 'Admin'))
+                    || (ownUserData.id !== reply.user.id && ownUserData.role === 'User' && (reply.user.role === 'Admin' || reply.user.role === 'User')))"
+                        (click)="reply.content">
+                        <p>Report</p>
+                    </button>
+                    <button *ngIf="!reply.options.isFormVisible" id="reply"
+                        (click)="reply.options.isFormVisible = true;">
+                        <p>Reply</p>
+                    </button>
+                </div>
+
+                <form class="post-block-reply-form" *ngIf="reply.options.isFormVisible">
+                    <div class="image-resize-div">
+                        <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*"
+                            style="display: none;" />
+                        <button (click)="triggerFileInput()" class="upload-button">
+                            <p style="font-size: 15px;">
+                                Resize image for editor
+                            </p>
+                        </button>
+                    </div>
+                    <quill-editor id="editor" [(ngModel)]="reply.options.replyToContent"
+                        [styles]="{'min-height': '200px'}" [modules]="quillConfig"></quill-editor>
+                    <span *ngIf="earnReplyTextLimitSymbols(reply.options.replyToContent)" class="error-message"> ◦ Text
+                        length can't be more than 5000
+                        symbols!</span>
+                    <div class="editor-buttons">
+                        <button id="rem-rep" (click)="reply.options.isFormVisible = false;">
+                            <p>Cancel</p>
+                        </button>
+                        <button id="editor-clean" (click)="reply.options.replyToContent= '';">
+                            <p>Clean</p>
+                        </button>
+                        <input *ngIf="!earnReplyTextLimitSymbols(reply.options.replyToContent)" type="submit"
+                            value="Send" (click)="sendReplyToReply(reply); 
+                        reply.options.replyToContent= ''; reply.options.isFormVisible = false;">
+                    </div>
+                </form>
+            </div>
+
+            <p class="pagination-text" *ngIf="moreRepliesAvailable()"
+                (click)="pagination.page = pagination.page+1; updateReplies();">LOAD MORE</p>
+
+            <div class="topic-list" *ngIf="similarPosts.length > 0">
+                <div class="line"></div>
+                <div class="topic-desc">
+                    <p>Similar Topics:</p>
+                </div>
+                <div class="topic-item" *ngFor="let post of similarPosts;">
+                    <div class="item-content">
+                        <img [src]="post.userInfo.iconDirectory" />
+                        <div class="item-text-content">
+                            <div class="text-content-1">
+                                <p class="topic-text" (click)="navigateTo('forum/'+post.id)">{{post.topic}}</p>
+                                <p class="user-text">{{post.userInfo.userName}} ○ {{post.createdAt}}</p>
+                            </div>
+                            <div class="text-content-2">
+                                <p>Views: {{post.views}}</p>
+                                <p>Replies: {{post.numberOfReplies}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
